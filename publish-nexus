@@ -1,0 +1,29 @@
+#!/bin/sh
+
+package=$(echo $TEST_DIR | sed 's/\.\/packages\///')
+version=$(grep -m1 version package.json | awk -F: '{ print $2 }' | sed 's/[", ]//g')
+
+if [ "$CIRCLE_BRANCH" = "master" ]; then
+  # npm publish is an idempotent action
+  tempLog=$(mktemp)
+
+  echo "Trying to publish to the nexus..."
+  # copy .npmrc file to all packages, to be able to publish to nexus
+  cp ../../nexus-npmrc ./.npmrc
+  # remove scope in package name (nexus doesn't support scopes)
+  sed -i 's/@blueberry\///' package.json
+  npm publish --registry http://nexus.4finance.net/content/repositories/snapshot-npm/ > ${tempLog} 2>&1
+
+  if [ $? -eq 0 ]; then
+    curl -H "Content-Type: application/json" \
+         -X POST \
+         -d "{\"text\":\"A new version *$version* of *$package* package has been just published to the nexus. <http://nexus.4finance.net/content/repositories/snapshot-npm/4finance-$package>\",\"username\":\"circle-ci\",\"icon_emoji\":\":tada:\"}" \
+         https://hooks.slack.com/services/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
+
+    echo "Successfully published to the nexus!"
+  else
+    echo "Some error happened during nexus publishing"
+  fi
+
+  rm -f ${tempLog}
+fi

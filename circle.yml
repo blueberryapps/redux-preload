@@ -1,0 +1,53 @@
+machine:
+  node:
+    version: 6
+dependencies:
+  pre:
+    # selenium server
+    - wget http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.0.jar
+    - nohup bash -c "java -jar selenium-server-standalone-2.53.0.jar &"
+    # install firefox 46
+    - wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/46.0/linux-x86_64/en-US/firefox-46.0.tar.bz2
+    - tar xvf firefox-46.0.tar.bz2
+    - sudo mv /usr/bin/firefox /usr/bin/firefox-old
+    - sudo ln -s $(pwd)/firefox/firefox /usr/bin/firefox
+    - curl -o- -L https://yarnpkg.com/install.sh | bash
+  override:
+    - >
+      set -e;
+      npm config set //registry.npmjs.org/:_authToken=$NPM_READ_TOKEN;
+      yarn install;
+      for TEST_DIR in $(find ./packages -mindepth 1 -maxdepth 1 -type d | sort); do
+        echo "Installing $TEST_DIR..."
+        cd $TEST_DIR;
+        yarn install;
+        cd ../..;
+      done
+  cache_directories:
+    - ~/.yarn-cache
+
+test:
+  override:
+    - >
+      set -e;
+      npm config set //registry.npmjs.org/:_authToken=$NPM_WRITE_TOKEN;
+      for TEST_DIR in $(find ./packages -mindepth 1 -maxdepth 1 -type d | sort); do
+        export TEST_DIR
+        PACKAGE_PATH="$TEST_DIR/package.json"
+        PACKAGE_NAME=$(cat $PACKAGE_PATH | grep name | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g' | xargs)
+        PACKAGE_VERSION=$(cat $PACKAGE_PATH | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g'| xargs)
+        PUBLISHED_PACKAGE_VERSION=$(npm show $PACKAGE_NAME version)
+
+        # Skip following logic if package hasn't been changed
+        if [ "$PACKAGE_VERSION" == "$PUBLISHED_PACKAGE_VERSION" ]; then
+          continue
+        fi
+
+        echo "Testing $TEST_DIR..."
+        cd $TEST_DIR;
+        yarn eslint;
+        yarn test;
+        ../../publish;
+        ../../publish-nexus;
+        cd ../..;
+      done

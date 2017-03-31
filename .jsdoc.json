@@ -1,0 +1,25 @@
+{
+  "tags": {
+    "allowUnknownTags": false,
+    "dictionaries": ["jsdoc"]
+  },
+  "source": {
+    "include": ["src"],
+    "includePattern": ".js$",
+    "excludePattern": "(node_modules/|docs)"
+  },
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": true
+  },
+  "opts": {
+    "destination": "./docs/",
+    "encoding": "utf8",
+    "private": false,
+    "recurse": true,
+    "template": "./node_modules/4finance-docs-theme"
+  }
+}
