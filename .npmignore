@@ -3,3 +3,8 @@ test
 .babelrc
 .gitignore
 .npmignore
+circle.yml
+publish
+publish-nexus
+node_modules
+.jsdoc.json

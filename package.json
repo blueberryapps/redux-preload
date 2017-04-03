@@ -1,30 +1,32 @@
 {
-  "name": "@blueberry/4finance-packages",
-  "version": "0.0.2",
-  "description": "Isolated packages",
+  "name": "redux-preload",
+  "version": "0.0.1",
+  "description": "Preload actions on both server & client side (allows deep nesting of components)",
   "main": "lib/index.js",
   "scripts": {
     "build": "yarn babel src -- --out-dir lib",
     "postversion": "git push && git push --tags && npm run clean",
     "prepublish": "npm run clean && npm run build",
     "preversion": "npm run clean",
+    "clean": "rm -rf ./lib",
     "version": "npm run build",
     "eslint": "eslint",
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blueberryapps/4finance-packages.git"
+    "url": "git+https://github.com/blueberryapps/redux-preload.git"
   },
   "keywords": [
-    "validation"
+    "preload",
+    "prefetch"
   ],
   "author": "Blueberry Apps",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/blueberryapps/4finance-packages/issues"
+    "url": "https://github.com/blueberryapps/redux-preload/issues"
   },
-  "homepage": "https://github.com/blueberryapps/4finance-packages#readme",
+  "homepage": "https://github.com/blueberryapps/redux-preload#readme",
   "devDependencies": {
     "@blueberry/4finance-docs-theme": "^1.0.0",
     "babel-core": "^6.13.2",
