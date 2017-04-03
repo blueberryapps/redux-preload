@@ -1,6 +1,6 @@
 {
   "name": "redux-preload",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Preload actions on both server & client side (allows deep nesting of components)",
   "main": "lib/index.js",
   "scripts": {

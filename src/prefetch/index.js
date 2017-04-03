@@ -1,6 +1,7 @@
 import React, { PropTypes, Component, PureComponent } from 'react';
 import getDisplayName from '../libs/getDisplayName';
 import PrefetchException from './PrefetchException';
+import serverPrefetch from './serverPrefetch';
 
 const ReactComponent = PureComponent || Component;
 /**
@@ -71,3 +72,5 @@ export default function prefetchWrapper(prefetchActions) {
       }
     };
 }
+
+export const serverPreload = serverPrefetch;
