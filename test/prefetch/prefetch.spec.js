@@ -1,5 +1,5 @@
 /* eslint-disable react/no-multi-comp */
-import connectPrefetch, { serverPrefetch } from '../../src';
+import connectPreload, { serverPreload } from '../../src';
 import React, { Component } from 'react';
 import TestUtils from 'react-addons-test-utils';
 import { assert } from 'chai';
@@ -23,7 +23,7 @@ describe('prefetch', () => {
   describe('on client side', () => {
     describe('prefetch actions defenitions', () => {
       it('should dispatch an actions provided as function', () => { // eslint-disable-line padded-blocks
-        @connectPrefetch(({ action }) => ({ type: action }))
+        @connectPreload(({ action }) => ({ type: action }))
         class Container extends Component {
           static propTypes = {
             action: React.PropTypes.string
@@ -44,7 +44,7 @@ describe('prefetch', () => {
       });
 
       it('should dispatch an actions provided as list of functions', () => { // eslint-disable-line padded-blocks
-        @connectPrefetch([
+        @connectPreload([
           ({ action }) => ({ type: action }),
           ({ action }) => ({ type: action })
         ])
@@ -68,7 +68,7 @@ describe('prefetch', () => {
       });
 
       it('should dispatch nested prefetch actions', () => { // eslint-disable-line padded-blocks
-        @connectPrefetch([
+        @connectPreload([
           () => ({ type: 'INCREMENT' })
         ])
         class Container extends Component {
@@ -77,7 +77,7 @@ describe('prefetch', () => {
           }
         }
 
-        @connectPrefetch([
+        @connectPreload([
           () => ({ type: 'INCREMENT' })
         ])
         class Nested extends Component {
@@ -102,7 +102,7 @@ describe('prefetch', () => {
       action.type === 'INCREMENT' ? ++prev : prev; // eslint-disable-line no-param-reassign
     const store = createStore(reducer);
 
-    @connectPrefetch([
+    @connectPreload([
       () => ({ type: 'INCREMENT' })
     ])
     class Container extends Component {
@@ -111,7 +111,7 @@ describe('prefetch', () => {
       }
     }
 
-    @connectPrefetch([
+    @connectPreload([
       () => ({ type: 'INCREMENT' })
     ])
     class Nested extends Component {
@@ -121,7 +121,7 @@ describe('prefetch', () => {
     }
 
     it('should dispatch prefetch actions', () => {
-      serverPrefetch(
+      serverPreload(
         <Provider store={store}>
           <Container />
         </Provider>

@@ -8,4 +8,4 @@ import prefetchWrapper from './prefetch';
  */
 export default prefetchWrapper;
 
-export serverPrefetch from './prefetch/serverPrefetch';
+export serverPreload from './prefetch/serverPrefetch';
