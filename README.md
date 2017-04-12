@@ -3,9 +3,10 @@
 <!-- START RENAME -->
 # Create new package
 
-```
+`
 bash <(curl https://raw.githubusercontent.com/blueberryapps/js-package-template/master/create-new-package) NEW_PACKAGE_NAME
-```
+`
+
 <!-- END RENAME -->
 
 ## Development
