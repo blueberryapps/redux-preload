@@ -1,0 +1,16 @@
+.DS_Store
+
+# build
+lib/
+coverage/
+docs/
+
+# node.js
+node_modules/
+npm-debug.log
+.DS_Store
+yarn*.log
+
+# IDE
+.idea
+*.sublime-workspace
