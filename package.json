@@ -20,8 +20,7 @@
     "eslint": "eslint ./src",
     "eslint:fix": "npm run eslint -- --fix",
     "jest": " jest",
-    "test": "jest",
-    "rename": "node ./rename.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

@@ -16,6 +16,7 @@ packageJson.description = packageJson.description.replace('XXX', name);
 packageJson.repository.url = packageJson.repository.url.replace('XXX', name);
 packageJson.bugs.url = packageJson.bugs.url.replace('XXX', name);
 packageJson.homepage = packageJson.homepage.replace('XXX', name);
+packageJson.private = false;
 
 const packageJsonNewContent = JSON.stringify(packageJson, null, 2);
 

@@ -18,3 +18,10 @@ git push -u origin --all \
   || echo -e "\n\nProject $project initialized!\n\nPlease create repository called $project on https://github.com and then do manual push with 'git push -u origin --all'."
 
 node ./rename.js $project
+
+rm ./rename.js
+rm ./create-new-package
+git add .
+git commit -m "Changed name to $project"
+
+echo "Finished!"
