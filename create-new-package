@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+project=$1
+Origin="git@github.com:blueberryapps/js-package-template.git"
+newOrigin="git@github.com:blueberryapps/$project"
+
+git clone $Origin $project
+
+cd $project
+
+git remote add parent $Origin
+git remote set-url origin $newOrigin
+git push -u origin --all \
+  && echo -e"\n\nProject $project initialized!" \
+  || echo -e "\n\nProject $project initialized!\n\nPlease create repository called $project on https://github.com and then do manual push with 'git push -u origin --all'."
+
+node ./rename.js $project

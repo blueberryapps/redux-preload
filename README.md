@@ -4,9 +4,7 @@
 # Create new package
 
 ```
-git clone git@github.com:blueberryapps/js-package-template.git new-package-name
-cd new-package-name
-yarn rename new-package-name
+bash <(curl https://raw.githubusercontent.com/blueberryapps/js-package-template/master/create-new-package) NEW_PACKAGE_NAME
 ```
 <!-- END RENAME -->
 
