@@ -1,5 +1,15 @@
 # XXX
 
+<!-- START RENAME -->
+# Create new package
+
+```
+git clone git@github.com:blueberryapps/js-package-template.git new-package-name
+cd new-package-name
+yarn rename new-package-name
+```
+<!-- END RENAME -->
+
 ## Development
 
 ```
