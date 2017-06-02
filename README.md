@@ -1,4 +1,4 @@
-# XXX
+# XXX [![Dependency Status](https://dependencyci.com/github/blueberryapps/js-package-template/badge)](https://dependencyci.com/github/blueberryapps/XXX)
 
 <!-- START RENAME -->
 # Create new package
