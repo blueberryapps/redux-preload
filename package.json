@@ -51,7 +51,6 @@
     "jsdom": "^9.4.1",
     "react-addons-test-utils": "^15.4.1",
     "chai-immutable": "^1.6.0",
-    "chai-spies": "^0.7.1",
     "cross-env": "^2.0.0",
     "enzyme": "^2.7.0",
     "enzyme-to-json": "^1.4.5",
