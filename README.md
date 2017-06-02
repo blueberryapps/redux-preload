@@ -1,4 +1,4 @@
-# Preload
+# Preload [![Dependency Status](https://dependencyci.com/github/blueberryapps/redux-preload/badge)](https://dependencyci.com/github/blueberryapps/redux-preload)
 
 ## Description
 Module is using to dispatch some actions (usually async data fetching) immediately after the rendering occurs. Works both on client and server sides.
