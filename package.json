@@ -1,8 +1,8 @@
 {
-  "name": "XXX",
+  "name": "redux-preload",
   "version": "0.1.0",
-  "private": true,
-  "description": "XXX",
+  "private": false,
+  "description": "redux-preload",
   "license": "MIT",
   "keywords": [],
   "author": "Blueberry Apps",
@@ -24,12 +24,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blueberryapps/XXX.git"
+    "url": "git+https://github.com/blueberryapps/redux-preload.git"
   },
   "bugs": {
-    "url": "https://github.com/blueberryapps/XXX/issues"
+    "url": "https://github.com/blueberryapps/redux-preload/issues"
   },
-  "homepage": "https://github.com/blueberryapps/XXX/tree/master#readme",
+  "homepage": "https://github.com/blueberryapps/redux-preload/tree/master#readme",
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
